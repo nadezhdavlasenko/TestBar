@@ -25,7 +25,7 @@ public class Servlet extends HttpServlet {
         RoleDAO roleDAO = new RoleDAO();
 //        roleDAO.findAll().forEach(System.out::println);
         response.getWriter().print("This is " + this.getClass().getName()
-                + ", using the GET method что не так" + roleDAO.getClass().getName());
+                + ", using the GET method" + roleDAO.findAll().isEmpty());
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

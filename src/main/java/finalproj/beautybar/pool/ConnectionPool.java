@@ -9,7 +9,9 @@ import java.sql.SQLException;
 
 public class ConnectionPool {
 
-    private static final String DATASOURCE_NAME = "jdbc/finalproj.beautybar";
+    //private static final String DATASOURCE_NAME = "jdbc/finalproj/beautybar";
+    private static final String DATASOURCE_NAME = "jdbc/beautybar";
+
     private static DataSource dataSource;
     static {
         try {

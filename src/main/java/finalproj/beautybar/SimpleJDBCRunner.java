@@ -1,6 +1,7 @@
 package finalproj.beautybar;
 
 import finalproj.beautybar.connect.ConnectorDB;
+import finalproj.beautybar.dao.RoleDAO;
 import finalproj.beautybar.entity.Role;
 
 import javax.naming.Context;
@@ -9,6 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 
 public class SimpleJDBCRunner {
@@ -78,22 +83,24 @@ public class SimpleJDBCRunner {
         }
 
         Context envCtx = null;
-//        try {
-//            envCtx = (Context) (new InitialContext().lookup("java:comp/env"));
-//        } catch (NamingException e) {
-//            e.printStackTrace();
-//        }
-//        DataSource ds = null;
-//        try {
-//            ds = (DataSource) envCtx.lookup("jdbc/finalproj.beautybar");
-//        } catch (NamingException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            cn = ds.getConnection();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            envCtx = (Context) (new InitialContext().lookup("java:comp/env"));
+           // envCtx = (Context) (new InitialContext().lookup("test/testobject"));
+
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        DataSource ds = null;
+        try {
+            ds = (DataSource) envCtx.lookup("bean/MyBeanFactory");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        try {
+            cn = ds.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         try {
             cn.close();
         } catch (SQLException e) {
